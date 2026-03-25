@@ -1,11 +1,12 @@
 import './App.css'
-import Profile from './Profile.jsx'
+import Profile from './components/Profile.jsx'
+import Gallery from './components/Gallery.jsx'
 
 export default function App() {
 
   return (
     <>
-      <Profile/>
+      <Gallery/>
     </>
   )
 }
