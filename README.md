@@ -1,5 +1,18 @@
 # 최주형 202230336
 
+## 2026-04-29 내용
+
+DOM(Document Object Model) Tree
+bundling
+tree의 노드는 컴포넌트를 나타냄
+Tailwind CSS(클래스단위), Bootstrap(컴포넌트 단위), CSS Module
+CSS의 내용은 일반 CSS작성법
+class선택자로 스타일 선언
+
+클래스 적용하는법:
+Import의 변수명은 관형적으로 style를 사용
+JSX에서는 class 대신 className
+
 ## 2026-04-15 내용
 지난주의 배열을 필터링하기
 ```jsx
