@@ -1,19 +1,17 @@
 import './App.css'
-import MovieHeroes from './components/MovieHeroes.jsx'
-import PackingList from './components/PackingList.jsx'
-import Kiosk from './components/kiosk.jsx'
-import ButtonCom from './components/ButtonCom/ButtonCom.jsx'
-import './components/ButtonCom/ButtonCom.module.css'
-import Toolbar from './components/ButtonCom/Toolbar.jsx'
+import './components/ButtonCom/Bubble.module.css'
+import Bubble from './components/Bubble.jsx'
+import Signup1 from './components/Signup1.jsx'
+import Signup2 from './components/Signup2.jsx'
 export default function App() {
 
   return (
     <>
-      {/* <PackingList/> */}
-      <Toolbar/>
-      <Kiosk/>
+      {/* <Bubble/> */}
+      <Signup1/>
+      <Signup2/>
+
     </>
   )
 }
-//test
-// export default App
+
