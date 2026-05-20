@@ -1,5 +1,77 @@
 # 최주형 202230336
 
+## 2026-05-20 내용
+
+# State Hook에 컴포넌트 상태 저장하기
+
+이미지는 index1의 이미지가 렌더링 되는데 console를 찍어보면 index는 0이 출력됩니다.
+클릭을 하면 handleClick함수는 다음과 같이 동작
+```jsx
+// 1번째 클릭 시 (초기 상태, index = 0)
+function handleClick(){
+    setIndex((index + 1) % gallery.length); // 상태를 1로 업데이트하도록 예약
+    console.log(index); // 0 출력 (현재 렌더링 주기의 index 값은 아직 변하지 않음)
+}
+
+// 2번째 클릭 시 (리렌더링 후, index = 1)
+function handleClick(){
+    setIndex((index + 1) % gallery.length); // 상태를 2로 업데이트하도록 예약
+    console.log(index); // 1 출력
+}
+
+// 3번째 클릭 시 (리렌더링 후, index = 2)
+function handleClick(){
+    setIndex((index + 1) % gallery.length); // 상태를 0으로 업데이트하도록 예약 (길이가 3인 경우)
+    console.log(index); // 2 출력
+}
+
+```
+
+React에서 **State Hook(`useState`)**은 컴포넌트의 현재 상태를 보관할 수 있는 메모리 역할을 제공합니다.
+
+* **주요 특징**:
+  * 일반 로컬 변수와 달리, 상태(state) 값이 변경되면 React가 자동으로 해당 컴포넌트를 **다시 렌더링(Re-rendering)**하여 화면을 업데이트합니다.
+  * 컴포넌트가 사용자와의 상호작용(버튼 클릭, 텍스트 입력 등) 결과를 기억하고 화면에 즉각적으로 반영해야 할 때 필수적으로 사용됩니다.
+* **기본 사용법**:
+  ```jsx
+  const [state, setState] = useState(initialState);
+  ```
+  * `state`: 현재 상태 값을 유지하는 변수
+  * `setState`: 상태 값을 업데이트하고 컴포넌트 리렌더링을 유발하는 함수
+  * `initialState`: 상태의 초기값
+
+**render오류**
+렌더링 완료 후 index일반 변수를 다시 할당해도 화면이 업데이트되지 않음 -> `useState` 상태(state) 사용 필수
+
+```jsx
+import { useState } from "react";
+import { gallery } from "./imgData";
+
+export default function Carousel() {
+    const [index, setIndex] = useState(0); // 일반 변수 대신 useState 훅 사용
+
+    function handeClick() {
+        setIndex((index + 1) % gallery.length); // setIndex로 상태 변경 시 리렌더링 발생
+    }
+
+    let slide = gallery[index];
+    return (
+        <>
+        <button onClick={handeClick}>Next</button>
+        <h2>
+            <li>{slide.name}</li>
+            by {slide.artist}
+        </h2>
+        <h3>{index + 1} of {gallery.length}</h3>
+        <img src={slide.img} alt={slide.alt} />
+        <p>{slide.description}</p>
+        </>
+    )
+}
+```
+
+> placehold.co에서 더미 이미지 가져오기 가능
+
 ## 2026-05-13 내용
 
 함수 직접 호출 >>> 이벤트 발생 안해도 이벤트 발생
